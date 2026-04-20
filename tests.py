@@ -436,6 +436,36 @@ class TestCreditCardValidator(unittest.TestCase):
         valid prefix near the top of the range"""
         self.assertTrue(credit_card_validator("2718000000000009"))
 
+    def test85(self):
+        """Verifies invalid prefix with valid checksum returns False
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("6011111111111117"))
+
+    def test86(self):
+        """Verifies invalid prefix with valid checksum returns False
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("9111111111111116"))
+
+    def test87(self):
+        """Verifies valid Visa checksum but invalid length returns False
+        Picked using Category Partition Testing to isolate length only"""
+        self.assertFalse(credit_card_validator("411111111111111"))  # 15 digits
+
+    def test88(self):
+        """Verifies valid Visa checksum but invalid length returns False
+        Picked using Category Partition Testing to isolate length only"""
+        self.assertFalse(credit_card_validator("41111111111111111"))  # 17 digits
+
+    def test89(self):
+        """Verifies valid AmEx checksum but invalid prefix returns False
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("351234567890123"))
+
+    def test90(self):
+        """Verifies valid AmEx checksum but invalid prefix returns False
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("361234567890124"))
+
 
 if __name__ == '__main__':
     unittest.main()
