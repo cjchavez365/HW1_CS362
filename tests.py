@@ -319,6 +319,36 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing for another valid AmEx-37 frame"""
         self.assertTrue(credit_card_validator("371234567890120"))
 
+    def test63(self):
+        """Verifies Visa with a different valid body returns True
+        Picked using Category Partition Testing for another valid Visa frame"""
+        self.assertTrue(credit_card_validator("4556737586899855"))
+
+    def test64(self):
+        """Verifies Visa with another valid body returns True
+        Picked using Category Partition Testing for a nontrivial valid Visa frame"""
+        self.assertTrue(credit_card_validator("4532015112830366"))
+
+    def test65(self):
+        """Verifies MasterCard prefix 51 with a different valid body returns True
+        Picked using Category Partition Testing for another valid 51-55 frame"""
+        self.assertTrue(credit_card_validator("5105105105105100"))
+
+    def test66(self):
+        """Verifies MasterCard prefix 55 with a different valid body returns True
+        Picked using Category Partition Testing for another valid 51-55 frame"""
+        self.assertTrue(credit_card_validator("5555555555554444"))
+
+    def test67(self):
+        """Verifies American Express prefix 34 with a different valid body returns True
+        Picked using Category Partition Testing for another valid AmEx-34 frame"""
+        self.assertTrue(credit_card_validator("349876543210123"))
+
+    def test68(self):
+        """Verifies American Express prefix 37 with a different valid body returns True
+        Picked using Category Partition Testing for another valid AmEx-37 frame"""
+        self.assertTrue(credit_card_validator("371449635398431"))
+
 
 if __name__ == '__main__':
     unittest.main()
