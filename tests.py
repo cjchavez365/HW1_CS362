@@ -394,6 +394,48 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing for the upper boundary with a realistic body"""
         self.assertTrue(credit_card_validator("2720123456789010"))
 
+    def test78(self):
+        """Verifies MasterCard prefix 2229 is accepted
+        Picked using Boundary Value Testing at an internal transition point
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2229000000000001"))
+
+    def test79(self):
+        """Verifies MasterCard prefix 2299 is accepted
+        Picked using Boundary Value Testing at an internal transition point
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2299000000000006"))
+
+    def test80(self):
+        """Verifies MasterCard prefix 2300 is accepted
+        Picked using Boundary Value Testing at an internal transition point
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2300000000000003"))
+
+    def test81(self):
+        """Verifies MasterCard prefix 2699 is accepted
+        Picked using Boundary Value Testing at an internal transition point
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2699000000000002"))
+
+    def test82(self):
+        """Verifies MasterCard prefix 2700 is accepted
+        Picked using Boundary Value Testing at an internal transition point
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2700000000000009"))
+
+    def test83(self):
+        """Verifies MasterCard prefix 2710 is accepted
+        Picked using Boundary Value Testing at an internal transition point
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2710000000000007"))
+
+    def test84(self):
+        """Verifies MasterCard prefix 2718 is accepted
+        Picked using Boundary Value Testing just below an already tested
+        valid prefix near the top of the range"""
+        self.assertTrue(credit_card_validator("2718000000000009"))
+
 
 if __name__ == '__main__':
     unittest.main()
