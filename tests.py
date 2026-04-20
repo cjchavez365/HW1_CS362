@@ -349,6 +349,51 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing for another valid AmEx-37 frame"""
         self.assertTrue(credit_card_validator("371449635398431"))
 
+    def test69(self):
+        """Verifies MasterCard prefix 53 with a nonzero valid body returns True
+        Picked using Category Partition Testing for an interior 51-55 frame"""
+        self.assertTrue(credit_card_validator("5312345678901233"))
+
+    def test70(self):
+        """Verifies MasterCard prefix 55 with a nonzero valid body returns True
+        Picked using Category Partition Testing for an upper-bound 51-55 frame"""
+        self.assertTrue(credit_card_validator("5512345678901231"))
+
+    def test71(self):
+        """Verifies MasterCard prefix 2229 with a nonzero valid body returns True
+        Picked using Category Partition Testing for an early interior 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2229123456789016"))
+
+    def test72(self):
+        """Verifies MasterCard prefix 2231 with a nonzero valid body returns True
+        Picked using Category Partition Testing for another interior 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2231123456789012"))
+
+    def test73(self):
+        """Verifies MasterCard prefix 2600 with a nonzero valid body returns True
+        Picked using Category Partition Testing for a middle 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2600123456789015"))
+
+    def test74(self):
+        """Verifies MasterCard prefix 2699 with a nonzero valid body returns True
+        Picked using Category Partition Testing for an upper interior 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2699123456789017"))
+
+    def test75(self):
+        """Verifies MasterCard prefix 2710 with a nonzero valid body returns True
+        Picked using Category Partition Testing for a late 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2710123456789012"))
+
+    def test76(self):
+        """Verifies MasterCard prefix 2718 with a nonzero valid body returns True
+        Picked using Category Partition Testing for a late interior 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2718123456789014"))
+
+    def test77(self):
+        """Verifies MasterCard prefix 2720 with a nonzero valid body returns True
+        Picked using Category Partition Testing for the upper boundary with a realistic body"""
+        self.assertTrue(credit_card_validator("2720123456789010"))
+
 
 if __name__ == '__main__':
     unittest.main()
