@@ -289,6 +289,36 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing by changing only the checksum"""
         self.assertFalse(credit_card_validator("378282246310006"))
 
+    def test57(self):
+        """Verifies Visa with a different valid nonzero body returns True
+        Picked using Category Partition Testing for another valid Visa frame"""
+        self.assertTrue(credit_card_validator("4123456789012349"))
+
+    def test58(self):
+        """Verifies MasterCard prefix 51 with a different valid nonzero body returns True
+        Picked using Category Partition Testing for another valid 51-55 frame"""
+        self.assertTrue(credit_card_validator("5112345678901235"))
+
+    def test59(self):
+        """Verifies MasterCard prefix 2221 with a different valid nonzero body returns True
+        Picked using Category Partition Testing for another valid 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2221123456789014"))
+
+    def test60(self):
+        """Verifies MasterCard prefix 2701 with a different valid nonzero body returns True
+        Picked using Category Partition Testing for another valid 2221-2720 frame"""
+        self.assertTrue(credit_card_validator("2701123456789013"))
+
+    def test61(self):
+        """Verifies American Express prefix 34 with a different valid nonzero body returns True
+        Picked using Category Partition Testing for another valid AmEx-34 frame"""
+        self.assertTrue(credit_card_validator("341234567890127"))
+
+    def test62(self):
+        """Verifies American Express prefix 37 with a different valid nonzero body returns True
+        Picked using Category Partition Testing for another valid AmEx-37 frame"""
+        self.assertTrue(credit_card_validator("371234567890120"))
+
 
 if __name__ == '__main__':
     unittest.main()
