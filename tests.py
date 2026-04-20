@@ -496,6 +496,26 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing for a second upper-bound valid frame"""
         self.assertTrue(credit_card_validator("2720992712345673"))
 
+    def test97(self):
+        """Invalid prefix but valid length and checksum (Visa-style)
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("9111111111111116"))
+
+    def test98(self):
+        """Invalid prefix but valid length and checksum (MC-style)
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("6011000000000004"))
+
+    def test99(self):
+        """Invalid prefix but valid length and checksum (AmEx-style)
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("351111111111118"))
+
+    def test100(self):
+        """Invalid prefix but valid length and checksum (AmEx-style)
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("361111111111117"))
+
 
 if __name__ == '__main__':
     unittest.main()
