@@ -205,6 +205,46 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Boundary Value Testing to isolate the prefix error"""
         self.assertFalse(credit_card_validator("2220000000000000"))
 
+    def test41(self):
+        """Verifies AmEx prefix 35 is rejected
+        Picked using Partition Testing to check another invalid 3x prefix"""
+        self.assertFalse(credit_card_validator("350000000000005"))
+
+    def test42(self):
+        """Verifies AmEx prefix 36 is rejected
+        Picked using Partition Testing to check another invalid 3x prefix"""
+        self.assertFalse(credit_card_validator("360000000000008"))
+
+    def test43(self):
+        """Verifies AmEx prefix 37 with invalid check digit returns False
+        Picked using Partition Testing by changing only the checksum"""
+        self.assertFalse(credit_card_validator("370000000000003"))
+
+    def test44(self):
+        """Verifies AmEx prefix 37 with length 14 returns False
+        Picked using Boundary Value Testing just below valid AmEx length"""
+        self.assertFalse(credit_card_validator("37000000000000"))
+
+    def test45(self):
+        """Verifies AmEx prefix 37 with length 16 returns False
+        Picked using Boundary Value Testing just above valid AmEx length"""
+        self.assertFalse(credit_card_validator("3700000000000000"))
+
+    def test46(self):
+        """Verifies another Visa with valid prefix and invalid check digit returns False
+        Picked using Partition Testing to try a different Visa checksum case"""
+        self.assertFalse(credit_card_validator("4012888888881882"))
+
+    def test47(self):
+        """Verifies MasterCard prefix 2222 with invalid check digit returns False
+        Picked using Partition Testing on an interior 2221-2720 value"""
+        self.assertFalse(credit_card_validator("2222000000000009"))
+
+    def test48(self):
+        """Verifies MasterCard prefix 2719 with invalid check digit returns False
+        Picked using Partition Testing on an interior upper-range value"""
+        self.assertFalse(credit_card_validator("2719000000000003"))
+
 
 if __name__ == '__main__':
     unittest.main()
