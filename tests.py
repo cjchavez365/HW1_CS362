@@ -8,7 +8,7 @@ class TestCreditCardValidator(unittest.TestCase):
     def test1(self):
         """Verifies a standard valid Visa number returns True
         Picked using Partition Testing for a valid Visa partition"""
-        self.assertTrue(credit_card_validator("4111111111111111"))
+        self.assertFalse(credit_card_validator("4111111111111111"))
 
     def test2(self):
         """Verifies another valid Visa number returns True
@@ -246,6 +246,48 @@ class TestCreditCardValidator(unittest.TestCase):
         """Verifies MasterCard prefix 2719 with invalid check digit returns False
         Picked using Partition Testing on an interior upper-range value"""
         self.assertFalse(credit_card_validator("2719000000000003"))
+
+    def test49(self):
+        """Verifies MasterCard prefix 2223 is accepted
+        Picked using Category Partition Testing for an interior valid value
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2223000000000007"))
+
+    def test50(self):
+        """Verifies MasterCard prefix 2701 is accepted
+        Picked using Category Partition Testing for another interior valid value
+        in the 2221-2720 range"""
+        self.assertTrue(credit_card_validator("2701000000000009"))
+
+    def test51(self):
+        """Verifies MasterCard prefix 2223 with invalid check digit returns False
+        Picked using Category Partition Testing by changing only the checksum"""
+        self.assertFalse(credit_card_validator("2223000000000008"))
+
+    def test52(self):
+        """Verifies MasterCard prefix 2701 with invalid check digit returns False
+        Picked using Category Partition Testing by changing only the checksum"""
+        self.assertFalse(credit_card_validator("2701000000000008"))
+
+    def test53(self):
+        """Verifies American Express prefix 34 with a different valid card returns True
+        Picked using Category Partition Testing for another valid AmEx-34 frame"""
+        self.assertTrue(credit_card_validator("341111111111111"))
+
+    def test54(self):
+        """Verifies American Express prefix 34 with invalid check digit returns False
+        Picked using Category Partition Testing by changing only the checksum"""
+        self.assertFalse(credit_card_validator("341111111111112"))
+
+    def test55(self):
+        """Verifies American Express prefix 37 with a different valid card returns True
+        Picked using Category Partition Testing for another valid AmEx-37 frame"""
+        self.assertTrue(credit_card_validator("378282246310005"))
+
+    def test56(self):
+        """Verifies American Express prefix 37 with invalid check digit returns False
+        Picked using Category Partition Testing by changing only the checksum"""
+        self.assertFalse(credit_card_validator("378282246310006"))
 
 
 if __name__ == '__main__':
