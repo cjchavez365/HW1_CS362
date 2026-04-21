@@ -556,6 +556,26 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Boundary Value Testing for checksum edge case"""
         self.assertTrue(credit_card_validator("340000000000000"))
 
+    def test109(self):
+        """Valid Visa with minimal repeating pattern should return True
+        Picked using Error Guessing for digit-pattern bugs"""
+        self.assertTrue(credit_card_validator("4444444444444448"))
+
+    def test110(self):
+        """Valid MasterCard with minimal repeating pattern should return True
+        Picked using Error Guessing for digit-pattern bugs"""
+        self.assertTrue(credit_card_validator("5555555555554444"))
+
+    def test111(self):
+        """Valid MasterCard (2221 range) with repeating pattern should return True
+        Picked using Error Guessing for digit-pattern bugs"""
+        self.assertTrue(credit_card_validator("2222222222222220"))
+
+    def test112(self):
+        """Valid AmEx with repeating pattern should return True
+        Picked using Error Guessing for digit-pattern bugs"""
+        self.assertTrue(credit_card_validator("373737373737373"))
+
 
 if __name__ == '__main__':
     unittest.main()
