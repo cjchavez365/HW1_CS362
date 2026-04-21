@@ -590,6 +590,7 @@ class TestCreditCardValidator(unittest.TestCase):
         """Verifies invalid prefix 57 with valid checksum and MasterCard length returns False
         Picked using Category Partition Testing to isolate prefix only"""
         self.assertFalse(credit_card_validator("5700000000000007"))
+        
 
 if __name__ == '__main__':
     unittest.main()
