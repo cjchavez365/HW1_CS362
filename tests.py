@@ -516,6 +516,26 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing to isolate prefix only"""
         self.assertFalse(credit_card_validator("361111111111117"))
 
+    def test101(self):
+        """Valid Visa-like number with leading zero should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator("0411111111111111"))
+
+    def test102(self):
+        """Valid MasterCard-like number with leading zero should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator("0510000000000008"))
+
+    def test103(self):
+        """Valid AmEx-like number with leading zero should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator("034000000000009"))
+
+    def test104(self):
+        """Valid-length number with leading zero and valid checksum should be rejected
+        Picked using Error Guessing for numeric parsing bugs"""
+        self.assertFalse(credit_card_validator("0123456789012349"))
+
 
 if __name__ == '__main__':
     unittest.main()
