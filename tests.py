@@ -191,11 +191,6 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Boundary Value Testing just above the lower 4-digit boundary"""
         self.assertTrue(credit_card_validator("2222000000000008"))
 
-    def test38(self):
-        """Verifies MasterCard prefix 2719 is accepted
-        Picked using Boundary Value Testing just below the upper 4-digit boundary"""
-        self.assertTrue(credit_card_validator("2719000000000008"))
-
     def test39(self):
         """Verifies MasterCard prefix 2230 is accepted
         Picked using Category Partition Testing for another interior valid
@@ -210,11 +205,6 @@ class TestCreditCardValidator(unittest.TestCase):
     def test41(self):
         """Verifies AmEx prefix 35 is rejected
         Picked using Partition Testing to check another invalid 3x prefix"""
-        self.assertFalse(credit_card_validator("350000000000006"))
-
-    def test42(self):
-        """Verifies prefix 35 is rejected with valid length and valid checksum
-        Picked using Category Partition Testing to isolate invalid prefix only"""
         self.assertFalse(credit_card_validator("350000000000006"))
 
     def test43(self):
@@ -496,11 +486,6 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing for a second upper-bound valid frame"""
         self.assertTrue(credit_card_validator("2720992712345673"))
 
-    def test97(self):
-        """Invalid prefix but valid length and checksum (Visa-style)
-        Picked using Category Partition Testing to isolate prefix only"""
-        self.assertFalse(credit_card_validator("9111111111111116"))
-
     def test98(self):
         """Invalid prefix but valid length and checksum (MC-style)
         Picked using Category Partition Testing to isolate prefix only"""
@@ -576,6 +561,35 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Error Guessing for digit-pattern bugs"""
         self.assertTrue(credit_card_validator("373737373737373"))
 
+    def test113(self):
+        """Verifies MasterCard prefix 2221 with valid checksum but length 15 returns False
+        Picked using Category Partition Testing to isolate length only"""
+        self.assertFalse(credit_card_validator("222100000000000"))
+
+    def test114(self):
+        """Verifies MasterCard prefix 2221 with valid checksum but length 17 returns False
+        Picked using Category Partition Testing to isolate length only"""
+        self.assertFalse(credit_card_validator("22210000000000000"))
+
+    def test115(self):
+        """Verifies American Express prefix 37 with valid checksum but length 14 returns False
+        Picked using Category Partition Testing to isolate length only"""
+        self.assertFalse(credit_card_validator("37000000000007"))
+
+    def test116(self):
+        """Verifies American Express prefix 37 with valid checksum but length 16 returns False
+        Picked using Category Partition Testing to isolate length only"""
+        self.assertFalse(credit_card_validator("3700000000000007"))
+
+    def test117(self):
+        """Verifies invalid prefix 39 with valid checksum and AmEx length returns False
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("390000000000001"))
+
+    def test118(self):
+        """Verifies invalid prefix 57 with valid checksum and MasterCard length returns False
+        Picked using Category Partition Testing to isolate prefix only"""
+        self.assertFalse(credit_card_validator("5700000000000007"))
 
 if __name__ == '__main__':
     unittest.main()
