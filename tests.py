@@ -691,6 +691,46 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing for multiple simultaneous faults"""
         self.assertFalse(credit_card_validator("36000000000001"))
 
+    def test139(self):
+        """Verifies prefix 50 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("500000000000001"))
+
+    def test140(self):
+        """Verifies prefix 56 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("560000000000001"))
+
+    def test141(self):
+        """Verifies prefix 2220 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("222000000000001"))
+
+    def test142(self):
+        """Verifies prefix 2721 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("272100000000001"))
+
+    def test143(self):
+        """Verifies prefix 33 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("33000000000001"))
+
+    def test144(self):
+        """Verifies prefix 38 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("38000000000001"))
+
+    def test145(self):
+        """Verifies prefix 35 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("35000000000001"))
+
+    def test146(self):
+        """Verifies prefix 36 with invalid length and invalid checksum returns False
+        Picked using Category Partition Testing for multiple simultaneous faults"""
+        self.assertFalse(credit_card_validator("36000000000001"))
+
 
 if __name__ == '__main__':
     unittest.main()
