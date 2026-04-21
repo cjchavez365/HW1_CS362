@@ -591,6 +591,26 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Category Partition Testing to isolate prefix only"""
         self.assertFalse(credit_card_validator("5700000000000007"))
 
+    def test119(self):
+        """Verifies empty string returns False
+        Picked using Boundary Value Testing for minimum length"""
+        self.assertFalse(credit_card_validator(""))
+
+    def test120(self):
+        """Verifies single digit string returns False
+        Picked using Boundary Value Testing for very small input"""
+        self.assertFalse(credit_card_validator("1"))
+
+    def test121(self):
+        """Verifies short string below minimum length returns False
+        Picked using Boundary Value Testing for <10 digits"""
+        self.assertFalse(credit_card_validator("123456789"))
+
+    def test122(self):
+        """Verifies another short string below minimum length returns False
+        Picked using Boundary Value Testing for <10 digits"""
+        self.assertFalse(credit_card_validator("12345"))
+
 
 if __name__ == '__main__':
     unittest.main()
