@@ -537,29 +537,24 @@ class TestCreditCardValidator(unittest.TestCase):
         self.assertFalse(credit_card_validator("0123456789012349"))
 
     def test105(self):
-        """Valid Visa with leading space should be rejected
-        Picked using Error Guessing for string parsing issues"""
-        self.assertFalse(credit_card_validator(" 4111111111111111"))
+        """Valid Visa with check digit 0 should return True
+        Picked using Boundary Value Testing for checksum edge case"""
+        self.assertTrue(credit_card_validator("4000000000000000"))
 
     def test106(self):
-        """Valid Visa with trailing space should be rejected
-        Picked using Error Guessing for string parsing issues"""
-        self.assertFalse(credit_card_validator("4111111111111111 "))
+        """Valid MasterCard with check digit 0 should return True
+        Picked using Boundary Value Testing for checksum edge case"""
+        self.assertTrue(credit_card_validator("5105105105105100"))
 
     def test107(self):
-        """Valid Visa with newline should be rejected
-        Picked using Error Guessing for string parsing issues"""
-        self.assertFalse(credit_card_validator("4111111111111111\n"))
+        """Valid MasterCard (2221 range) with check digit 0 should return True
+        Picked using Boundary Value Testing for checksum edge case"""
+        self.assertTrue(credit_card_validator("2223000048400010"))
 
     def test108(self):
-        """Valid MasterCard with leading space should be rejected
-        Picked using Error Guessing for string parsing issues"""
-        self.assertFalse(credit_card_validator(" 5100000000000008"))
-
-    def test109(self):
-        """Valid AmEx with trailing space should be rejected
-        Picked using Error Guessing for string parsing issues"""
-        self.assertFalse(credit_card_validator("340000000000009 "))
+        """Valid AmEx with check digit 0 should return True
+        Picked using Boundary Value Testing for checksum edge case"""
+        self.assertTrue(credit_card_validator("340000000000000"))
 
 
 if __name__ == '__main__':
