@@ -536,6 +536,31 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Error Guessing for numeric parsing bugs"""
         self.assertFalse(credit_card_validator("0123456789012349"))
 
+    def test105(self):
+        """Valid Visa with leading space should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator(" 4111111111111111"))
+
+    def test106(self):
+        """Valid Visa with trailing space should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator("4111111111111111 "))
+
+    def test107(self):
+        """Valid Visa with newline should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator("4111111111111111\n"))
+
+    def test108(self):
+        """Valid MasterCard with leading space should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator(" 5100000000000008"))
+
+    def test109(self):
+        """Valid AmEx with trailing space should be rejected
+        Picked using Error Guessing for string parsing issues"""
+        self.assertFalse(credit_card_validator("340000000000009 "))
+
 
 if __name__ == '__main__':
     unittest.main()
