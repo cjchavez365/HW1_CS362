@@ -611,6 +611,56 @@ class TestCreditCardValidator(unittest.TestCase):
         Picked using Boundary Value Testing for <10 digits"""
         self.assertFalse(credit_card_validator("12345"))
 
+    def test123(self):
+        """Verifies prefix 2220 with invalid checksum returns False
+        Picked using Category Partition Testing for invalid prefix and checkbit"""
+        self.assertFalse(credit_card_validator("2220000000000001"))
+
+    def test124(self):
+        """Verifies prefix 2721 with invalid checksum returns False
+        Picked using Category Partition Testing for invalid prefix and checkbit"""
+        self.assertFalse(credit_card_validator("2721000000000005"))
+
+    def test125(self):
+        """Verifies prefix 50 with invalid checksum returns False
+        Picked using Category Partition Testing for invalid prefix and checkbit"""
+        self.assertFalse(credit_card_validator("5000000000000000"))
+
+    def test126(self):
+        """Verifies prefix 56 with invalid checksum returns False
+        Picked using Category Partition Testing for invalid prefix and checkbit"""
+        self.assertFalse(credit_card_validator("5600000000000000"))
+
+    def test127(self):
+        """Verifies American Express-like prefix 33 with invalid checksum returns False
+        Picked using Category Partition Testing for invalid prefix and checkbit"""
+        self.assertFalse(credit_card_validator("330000000000000"))
+
+    def test128(self):
+        """Verifies American Express-like prefix 38 with invalid checksum returns False
+        Picked using Category Partition Testing for invalid prefix and checkbit"""
+        self.assertFalse(credit_card_validator("380000000000001"))
+
+    def test129(self):
+        """Verifies MasterCard prefix 2220 with invalid length returns False
+        Picked using Category Partition Testing for invalid prefix and length"""
+        self.assertFalse(credit_card_validator("222000000000000"))
+
+    def test130(self):
+        """Verifies MasterCard prefix 2721 with invalid length returns False
+        Picked using Category Partition Testing for invalid prefix and length"""
+        self.assertFalse(credit_card_validator("272100000000000"))
+
+    def test131(self):
+        """Verifies American Express-like prefix 35 with invalid length returns False
+        Picked using Category Partition Testing for invalid prefix and length"""
+        self.assertFalse(credit_card_validator("35000000000000"))
+
+    def test132(self):
+        """Verifies American Express-like prefix 36 with invalid length returns False
+        Picked using Category Partition Testing for invalid prefix and length"""
+        self.assertFalse(credit_card_validator("36000000000000"))
+
 
 if __name__ == '__main__':
     unittest.main()
