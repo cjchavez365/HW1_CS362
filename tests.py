@@ -849,7 +849,7 @@ class TestCreditCardValidator(unittest.TestCase):
     def test170(self):
         """Verifies prefix 38 with invalid long length but valid checksum returns False
         Picked using Category Partition Testing for invalid prefix and length"""
-        self.assertFalse(credit_card_validator("3800000000000006"))        
+        self.assertFalse(credit_card_validator("3800000000000006"))      
 
 
 if __name__ == '__main__':
